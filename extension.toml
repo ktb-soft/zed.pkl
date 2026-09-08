@@ -1,0 +1,20 @@
+id = "pkl"
+name = "Pkl"
+version = "0.4.0"
+schema_version = 1
+authors = ["Brian Kenkel <bkenks@gmail.com>"]
+description = "Pkl language support for Zed"
+repository = "https://github.com/ktb-soft/zed.pkl"
+
+[[capabilities]]
+kind = "process:exec"
+command = "*"
+args = ["-version"]
+
+[grammars.pkl]
+repository = "https://github.com/apple/tree-sitter-pkl"
+commit = "65f4483b9e8a5960a4d8948421ef3a8992013517"
+
+[language_servers.pkl]
+name = "Pkl LSP"
+language = "Pkl"

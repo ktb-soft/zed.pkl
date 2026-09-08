@@ -1,0 +1,25 @@
+[tools]
+java = "temurin-25.0.4+101.0.LTS"
+pkl = "0.32"
+rust = "1.98"
+
+[tasks.lint]
+description = "Lint the extension"
+run = "cargo clippy --target wasm32-wasip2 --all-targets -- -D warnings"
+
+[tasks.fmt]
+description = "Format Rust sources"
+run = "cargo fmt"
+
+[tasks.test]
+description = "Run unit tests on the host target"
+run = "cargo test"
+
+[tasks.build]
+description = "Build the extension WebAssembly component"
+run = "cargo build --target wasm32-wasip2"
+
+[tasks.check]
+description = "Everything CI runs"
+depends = ["lint", "test", "build"]
+run = "cargo fmt --check"
