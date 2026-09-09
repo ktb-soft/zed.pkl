@@ -1,6 +1,6 @@
 id = "pkl"
 name = "Pkl"
-version = "0.4.0"
+version = "0.1.0"
 schema_version = 1
 authors = ["Brian Kenkel <bkenks@gmail.com>"]
 description = "Pkl language support for Zed"
