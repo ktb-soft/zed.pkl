@@ -23,10 +23,13 @@ never receives `pkl.cli.path` — and because its `PATH` fallback lives in the c
 that handles the reply, it never searches your `PATH` either. The resulting
 message is misleading: your `PATH` is fine.
 
-This is fixed upstream but unreleased. Until pkl-lsp 0.9.0 ships, `PklProject`
-dependency resolution, `package://` imports, and the download-package code action
-are unavailable on the bundled jar. Everything else — highlighting, hover,
-go-to-definition, completion, formatting, diagnostics — works normally.
+This is fixed upstream but unreleased. Until pkl-lsp 0.9.0 ships, the bundled jar
+cannot run the `pkl` CLI, so it cannot re-sync a `PklProject` after you edit it,
+download remote `package://` packages, or offer the download-package code action.
+
+An already-synced project still works: pkl-lsp reads `PklProject.deps.json` off
+disk and follows local dependency paths without the CLI. Highlighting, hover,
+go-to-definition, completion, formatting, and diagnostics are unaffected.
 
 ### Using the patched jar
 

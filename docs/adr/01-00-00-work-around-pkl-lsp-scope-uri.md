@@ -55,10 +55,15 @@ Instead:
 
 ## Consequences
 
-Until pkl-lsp 0.9.0, users on the bundled jar lose `PklProject` dependency
-resolution, `package://` downloads, and the download-package code action, because
-all of them route through `PklCli`, which stays unavailable. Parsing, hover,
-go-to-definition, completion, formatting, and diagnostics are unaffected.
+Until pkl-lsp 0.9.0, users on the bundled jar lose project syncing,
+`package://` downloads, and the download-package code action, because all of them
+route through `PklCli`, which stays unavailable.
+
+Resolution of an already-synced project is not affected: `PklProjectManager`
+reads `PklProject.deps.json` from disk and only shells out to the CLI to
+regenerate it (`PklProjectManager.kt:177-215`). A project whose dependencies are
+local and already vendored behaves normally. Parsing, hover, go-to-definition,
+completion, formatting, and diagnostics are unaffected throughout.
 
 Item 2 is a workaround for a bug and should be reconsidered when 0.9.0 ships —
 the capabilities are truthful in themselves (Zed genuinely ignores those
